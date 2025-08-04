@@ -1,0 +1,242 @@
+{
+  // Configurações gerais do editor
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.rulers": [80, 120],
+  "editor.wordWrap": "bounded",
+  "editor.minimap.enabled": true,
+  "editor.suggestSelection": "first",
+  "editor.acceptSuggestionOnEnter": "on",
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": false,
+    "strings": true
+  },
+
+  // Configurações para Go
+  "go.useLanguageServer": true,
+  "go.lintTool": "golangci-lint",
+  "go.lintFlags": ["--fast"],
+  "go.formatTool": "goimports",
+  "go.testFlags": ["-v"],
+  "go.coverOnSave": true,
+  "go.buildOnSave": "package",
+  "go.vetOnSave": "package",
+  "go.goroot": "",
+  "go.gopath": "",
+  "go.toolsManagement.autoUpdate": true,
+  "go.alternateTools": {},
+  "go.gocodeAutoBuild": false,
+  "go.useCodeSnippetsOnFunctionSuggest": true,
+  "go.useCodeSnippetsOnFunctionSuggestWithoutType": true,
+
+  // Configurações para TypeScript/JavaScript
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.suggest.autoImports": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.preferences.importModuleSpecifier": "relative",
+  "javascript.suggest.autoImports": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.preferences.includePackageJsonAutoImports": "auto",
+  "javascript.preferences.includePackageJsonAutoImports": "auto",
+
+  // Configurações para React
+  "emmet.includeLanguages": {
+    "typescript": "typescriptreact",
+    "javascript": "javascriptreact"
+  },
+  "emmet.triggerExpansionOnTab": true,
+
+  // Configurações para Docker
+  "docker.commands.attach": "docker exec -it ${containerId} /bin/sh",
+  "docker.commands.build": "docker build --rm -f ${dockerfile} -t ${imageName} .",
+  "docker.commands.run": "docker run --rm -d ${exposedPorts} ${tag}",
+  "docker.commands.runInteractive": "docker run --rm -it ${exposedPorts} ${tag}",
+  "docker.commands.start": "docker start ${containerId}",
+  "docker.commands.stop": "docker stop ${containerId}",
+  "docker.commands.remove": "docker rm ${containerId}",
+  "docker.commands.prune": "docker system prune -f",
+  "docker.commands.composeUp": "docker-compose up -d",
+  "docker.commands.composeDown": "docker-compose down",
+  "docker.commands.composeRestart": "docker-compose restart",
+
+  // Configurações para arquivos específicos
+  "[go]": {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    },
+    "editor.insertSpaces": false,
+    "editor.tabSize": 4
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[dockerfile]": {
+    "editor.formatOnSave": true
+  },
+  "[markdown]": {
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": true,
+      "strings": true
+    }
+  },
+
+  // Configurações de terminal
+  "terminal.integrated.defaultProfile.linux": "bash",
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.fontFamily": "JetBrains Mono, Consolas, 'Courier New', monospace",
+
+  // Configurações de Git
+  "git.enableSmartCommit": true,
+  "git.confirmSync": false,
+  "git.autofetch": true,
+  "git.autofetchPeriod": 180,
+
+  // Configurações de extensões
+  "extensions.autoUpdate": true,
+  "extensions.autoCheckUpdates": true,
+
+  // Configurações de arquivos
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/coverage": true,
+    "**/.env": true,
+    "**/.env.local": true,
+    "**/.env.production": true
+  },
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/dist/**": true,
+    "**/build/**": true,
+    "**/.git/**": true
+  },
+
+  // Configurações de busca
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/.git": true,
+    "**/coverage": true
+  },
+
+  // Configurações de debug
+  "debug.allowBreakpointsEverywhere": true,
+  "debug.console.fontSize": 14,
+
+  // Configurações de workspace
+  "workbench.colorTheme": "Default Dark+",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.editor.enablePreview": false,
+
+  // Configurações específicas para PBX
+  "go.toolsEnvVars": {
+    "GO111MODULE": "on",
+    "GOPROXY": "https://proxy.golang.org,direct",
+    "GOSUMDB": "sum.golang.org"
+  },
+
+  // Configurações para desenvolvimento web
+  "liveServer.settings.donotShowInfoMsg": true,
+  "liveServer.settings.donotVerifyTags": true,
+
+  // Configurações para ESLint e Prettier
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "es5",
+  "prettier.semi": true,
+  "prettier.printWidth": 80,
+  "prettier.tabWidth": 2,
+
+  // Configurações para testes
+  "testing.automaticallyOpenPeekView": "never",
+  "testing.followRunningTest": true,
+
+  // Configurações para IntelliSense
+  "editor.parameterHints.enabled": true,
+  "editor.hover.enabled": true,
+  "editor.suggest.showKeywords": true,
+  "editor.suggest.showSnippets": true,
+  "editor.suggest.showClasses": true,
+  "editor.suggest.showFunctions": true,
+  "editor.suggest.showVariables": true,
+  "editor.suggest.showConstants": true,
+  "editor.suggest.showEnums": true,
+  "editor.suggest.showEnumMembers": true,
+  "editor.suggest.showWords": true,
+  "editor.suggest.showUsers": true,
+  "editor.suggest.showFolders": true,
+  "editor.suggest.showFiles": true,
+  "editor.suggest.showReferences": true,
+  "editor.suggest.showCustomcolors": true,
+  "editor.suggest.showColorfunctions": true,
+  "editor.suggest.showConstructors": true,
+  "editor.suggest.showTypeparameters": true,
+  "editor.suggest.showUnits": true,
+  "editor.suggest.showValues": true,
+  "editor.suggest.showEnums": true,
+  "editor.suggest.showEnumMembers": true,
+  "editor.suggest.showKeywords": true,
+  "editor.suggest.showWords": true,
+  "editor.suggest.showColors": true,
+  "editor.suggest.showFiles": true,
+  "editor.suggest.showReferences": true,
+  "editor.suggest.showCustomcolors": true,
+  "editor.suggest.showColorfunctions": true,
+  "editor.suggest.showConstructors": true,
+  "editor.suggest.showTypeparameters": true,
+  "editor.suggest.showUnits": true,
+  "editor.suggest.showValues": true,
+  "editor.suggest.showEnums": true,
+  "editor.suggest.showEnumMembers": true,
+  "editor.suggest.showKeywords": true,
+  "editor.suggest.showWords": true,
+  "editor.suggest.showColors": true,
+  "editor.suggest.showFiles": true,
+  "editor.suggest.showReferences": true,
+  "editor.suggest.showCustomcolors": true,
+  "editor.suggest.showColorfunctions": true,
+  "editor.suggest.showConstructors": true,
+  "editor.suggest.showTypeparameters": true,
+  "editor.suggest.showUnits": true,
+  "editor.suggest.showValues": true
+}
