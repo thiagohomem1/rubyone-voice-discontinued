@@ -1,0 +1,540 @@
+# Cursor IDE Rules for PBX Voice System Development
+
+## Project Overview
+You are building a complete PBX (Private Branch Exchange) voice system similar to GoToConnect using only open-source technologies. The system includes a softphone with WebRTC, admin panel, and ELK stack monitoring.
+
+## Technology Stack
+
+### Backend
+- **Go (Fiber)** - High-performance HTTP API server
+- **PostgreSQL** - Primary database for structured data
+- **Redis** - Caching and session management
+- **Freeswitch** - Core telephony engine with mod_xml_curl integration
+
+### Frontend
+- **React/TypeScript** - Modern admin interface and softphone
+- **Tailwind CSS** - Utility-first CSS framework
+- **SIP.js** - WebRTC softphone implementation
+
+### Monitoring & Analytics
+- **OpenSearch** - Elasticsearch alternative for log aggregation
+- **Logstash** - Log processing and transformation
+- **Kibana** - Data visualization and dashboards
+
+### Infrastructure
+- **Docker** - Containerization and orchestration
+- **Nginx** - Reverse proxy and load balancer
+- **Let's Encrypt** - SSL certificate management
+
+## Code Standards & Best Practices
+
+### Go Backend Development
+- Use Fiber framework for HTTP server implementation
+- Follow Go naming conventions: camelCase for variables, PascalCase for exported names
+- Use GORM for database operations with proper migrations
+- Implement comprehensive error handling with custom error types
+- Use context for cancellation and timeouts in all operations
+- Structure code into: controllers, services, models, middleware, routes
+- Use environment variables for all configuration
+- Implement structured logging with proper log levels
+- Use dependency injection pattern for services
+- Write unit tests for all business logic
+- Use interfaces for better testability and modularity
+
+### React Frontend Development
+- Use TypeScript for type safety throughout the application
+- Use functional components with React hooks (useState, useEffect, useContext)
+- Use Tailwind CSS for responsive and modern styling
+- Implement proper state management using Context API or Redux Toolkit
+- Use React Router for navigation and routing
+- Implement proper error boundaries for error handling
+- Use proper TypeScript interfaces for API responses and props
+- Implement proper form validation using libraries like react-hook-form
+- Use React.memo for performance optimization
+- Implement proper loading states and error handling
+- Use proper accessibility attributes (aria-labels, roles)
+
+### Database Design & Management
+- Use PostgreSQL as the primary database for all structured data
+- Use Redis for caching, sessions, and real-time data
+- Implement proper database migrations using GORM
+- Use connection pooling for database connections
+- Implement proper indexing strategies for performance
+- Use transactions for data consistency
+- Implement proper backup and recovery procedures
+- Use proper database normalization
+- Implement proper foreign key relationships
+- Use proper data types and constraints
+
+### Telephony Integration (Freeswitch)
+- Use Freeswitch as the core telephony engine
+- Implement mod_xml_curl for dynamic configuration management
+- Use ESL (Event Socket Library) for real-time event handling
+- Implement proper SIP protocol handling
+- Use WebRTC for softphone functionality
+- Implement proper call routing and management
+- Use proper media handling and codec optimization
+- Implement proper call recording and voicemail features
+- Use proper security measures for SIP communication
+- Implement proper call queuing and IVR systems
+
+### WebRTC & Softphone Implementation
+- Use SIP.js library for SIP protocol implementation
+- Implement proper WebRTC media handling
+- Use STUN/TURN servers for NAT traversal
+- Implement proper media codec optimization
+- Use proper security measures for WebRTC
+- Implement proper call quality monitoring
+- Use proper error handling for connection issues
+- Implement proper user interface for call controls
+- Use proper audio/video device management
+- Implement proper call history and contact management
+
+### Monitoring & Logging (ELK Stack)
+- Use OpenSearch for centralized log aggregation
+- Use Logstash for log processing and transformation
+- Use Kibana for data visualization and dashboards
+- Implement structured logging throughout the application
+- Monitor system performance and call quality metrics
+- Implement proper alerting and notification systems
+- Use proper log retention and archival policies
+- Implement proper security for log data
+- Use proper log parsing and filtering
+- Implement proper dashboard creation for different stakeholders
+
+## Project Structure
+
+### Recommended Directory Structure
+```
+pbx-voice-system/
+├── .vscode/                    # Cursor IDE configuration
+│   ├── settings.json
+│   ├── tasks.json
+│   ├── launch.json
+│   └── extensions.json
+├── backend/                    # Go API server
+│   ├── cmd/                   # Application entry point
+│   ├── controllers/           # HTTP request handlers
+│   ├── services/              # Business logic layer
+│   ├── models/                # Data models and structs
+│   ├── middleware/            # HTTP middleware
+│   ├── routes/                # Route definitions
+│   ├── database/              # Database migrations and setup
+│   ├── utils/                 # Utility functions
+│   ├── config/                # Configuration management
+│   └── tests/                 # Unit and integration tests
+├── frontend/                  # React admin panel
+│   ├── src/
+│   │   ├── components/        # Reusable React components
+│   │   ├── pages/             # Page components
+│   │   ├── services/          # API service layer
+│   │   ├── hooks/             # Custom React hooks
+│   │   ├── utils/             # Utility functions
+│   │   ├── types/             # TypeScript type definitions
+│   │   ├── styles/            # CSS and styling
+│   │   └── assets/            # Static assets
+│   ├── public/                # Public assets
+│   └── tests/                 # Frontend tests
+├── softphone/                 # WebRTC softphone
+│   ├── src/
+│   │   ├── components/        # Phone-specific components
+│   │   ├── services/          # SIP and WebRTC services
+│   │   ├── hooks/             # Custom hooks for phone
+│   │   ├── utils/             # Phone utilities
+│   │   └── types/             # Phone type definitions
+│   ├── public/                # Public assets
+│   └── tests/                 # Softphone tests
+├── freeswitch/                # Freeswitch configuration
+│   ├── conf/                  # Configuration files
+│   ├── scripts/               # Custom scripts
+│   └── recordings/            # Call recordings
+├── monitoring/                # ELK stack configuration
+│   ├── logstash/              # Log processing configuration
+│   ├── kibana/                # Dashboard configurations
+│   └── opensearch/            # Search engine configuration
+├── docker/                    # Docker configurations
+│   ├── nginx/                 # Reverse proxy configuration
+│   ├── ssl/                   # SSL certificates
+│   └── scripts/               # Docker utility scripts
+├── docs/                      # Documentation
+├── scripts/                   # Build and deployment scripts
+├── docker-compose.yml         # Development environment
+├── docker-compose.prod.yml    # Production environment
+├── go.mod                     # Go module definition
+├── package.json               # Node.js dependencies
+└── README.md                  # Project documentation
+```
+
+## Development Guidelines
+
+### Code Quality Standards
+- Write clean, readable, and maintainable code
+- Use meaningful variable and function names
+- Add comprehensive comments for complex logic
+- Follow DRY (Don't Repeat Yourself) principle
+- Use proper error handling throughout the application
+- Implement proper logging for debugging and monitoring
+- Write unit tests for all critical functionality
+- Use proper code formatting and linting
+- Implement proper security measures
+- Use proper performance optimization techniques
+
+### API Design Principles
+- Use RESTful API design principles
+- Implement proper HTTP status codes
+- Use proper request/response formats
+- Implement proper pagination for large datasets
+- Use proper filtering and sorting capabilities
+- Implement proper rate limiting
+- Use proper authentication and authorization
+- Implement proper API versioning
+- Use proper API documentation
+- Implement proper error responses
+
+### Security Best Practices
+- Use HTTPS for all communications
+- Implement proper JWT token authentication
+- Use proper input validation and sanitization
+- Implement proper rate limiting and DDoS protection
+- Use proper CORS settings
+- Implement proper SQL injection prevention
+- Use proper XSS protection
+- Implement proper CSRF protection
+- Use proper password hashing
+- Implement proper session management
+
+### Performance Optimization
+- Use proper caching strategies (Redis)
+- Implement proper database query optimization
+- Use proper connection pooling
+- Implement proper code splitting for frontend
+- Use proper lazy loading for components
+- Implement proper image optimization
+- Use proper CDN for static assets
+- Implement proper load balancing
+- Use proper monitoring and alerting
+- Implement proper resource management
+
+### Testing Strategy
+- Write unit tests for all business logic
+- Implement integration tests for API endpoints
+- Write end-to-end tests for critical user flows
+- Use proper mocking for external dependencies
+- Implement proper test coverage reporting
+- Use proper test data management
+- Implement proper CI/CD pipeline testing
+- Use proper performance testing
+- Implement proper security testing
+- Use proper accessibility testing
+
+## Environment Configuration
+
+### Development Environment
+- Use Docker Compose for local development
+- Implement proper environment variable management
+- Use proper development database setup
+- Implement proper local SSL certificates
+- Use proper development logging configuration
+- Implement proper hot reloading for development
+- Use proper development debugging tools
+- Implement proper local testing environment
+- Use proper development security settings
+- Implement proper development monitoring
+
+### Production Environment
+- Use proper production Docker configurations
+- Implement proper production database setup
+- Use proper production SSL certificates
+- Implement proper production logging
+- Use proper production monitoring and alerting
+- Implement proper production backup strategies
+- Use proper production security measures
+- Implement proper production performance optimization
+- Use proper production deployment strategies
+- Implement proper production disaster recovery
+
+## Multitenancy Implementation
+- Implement proper tenant isolation
+- Use proper database schema design for multitenancy
+- Implement proper resource sharing strategies
+- Use proper billing and usage tracking
+- Implement proper tenant-specific configurations
+- Use proper tenant-specific security measures
+- Implement proper tenant-specific monitoring
+- Use proper tenant-specific backup strategies
+- Implement proper tenant-specific performance optimization
+- Use proper tenant-specific deployment strategies
+
+## Integration Guidelines
+
+### Freeswitch Integration
+- Use mod_xml_curl for dynamic configuration
+- Implement proper ESL event handling
+- Use proper SIP protocol implementation
+- Implement proper call routing logic
+- Use proper media handling
+- Implement proper call recording
+- Use proper voicemail functionality
+- Implement proper IVR systems
+- Use proper conference calling
+- Implement proper call queuing
+
+### WebRTC Integration
+- Use SIP.js for SIP protocol
+- Implement proper WebRTC media handling
+- Use proper STUN/TURN server configuration
+- Implement proper media codec optimization
+- Use proper security measures for WebRTC
+- Implement proper call quality monitoring
+- Use proper error handling for connection issues
+- Implement proper user interface for call controls
+- Use proper audio/video device management
+- Implement proper call history and contact management
+
+### ELK Stack Integration
+- Use OpenSearch for log aggregation
+- Implement proper Logstash pipelines
+- Use proper Kibana dashboard creation
+- Implement proper log parsing and filtering
+- Use proper alerting and notification systems
+- Implement proper log retention policies
+- Use proper security for log data
+- Implement proper performance monitoring
+- Use proper call quality metrics
+- Implement proper system health monitoring
+
+## Deployment & DevOps
+
+### Docker Configuration
+- Use proper multi-stage Docker builds
+- Implement proper Docker security best practices
+- Use proper Docker networking
+- Implement proper Docker volume management
+- Use proper Docker health checks
+- Implement proper Docker logging
+- Use proper Docker resource limits
+- Implement proper Docker backup strategies
+- Use proper Docker monitoring
+- Implement proper Docker security scanning
+
+### CI/CD Pipeline
+- Implement proper automated testing
+- Use proper code quality checks
+- Implement proper security scanning
+- Use proper automated deployment
+- Implement proper rollback strategies
+- Use proper environment management
+- Implement proper monitoring and alerting
+- Use proper backup and recovery procedures
+- Implement proper performance testing
+- Use proper security testing
+
+## Monitoring & Observability
+
+### Application Monitoring
+- Monitor API response times
+- Track database query performance
+- Monitor memory and CPU usage
+- Track error rates and exceptions
+- Monitor user activity and usage patterns
+- Track call quality metrics
+- Monitor system resource utilization
+- Track security events and threats
+- Monitor backup and recovery processes
+- Track deployment and release metrics
+
+### Infrastructure Monitoring
+- Monitor server health and performance
+- Track network connectivity and bandwidth
+- Monitor storage usage and performance
+- Track SSL certificate expiration
+- Monitor Docker container health
+- Track database performance and connections
+- Monitor Redis cache hit rates
+- Track Freeswitch performance metrics
+- Monitor OpenSearch cluster health
+- Track backup and recovery success rates
+
+## Documentation Standards
+
+### Code Documentation
+- Add comprehensive comments for complex logic
+- Use proper function and method documentation
+- Document API endpoints with examples
+- Add proper README files for each component
+- Document configuration options
+- Add proper inline documentation
+- Use proper code examples
+- Document error handling procedures
+- Add proper troubleshooting guides
+- Document security considerations
+
+### User Documentation
+- Create comprehensive user guides
+- Document installation and setup procedures
+- Add proper troubleshooting documentation
+- Create video tutorials for complex features
+- Document API usage with examples
+- Add proper FAQ sections
+- Document security best practices
+- Create proper admin guides
+- Document integration procedures
+- Add proper release notes
+
+## Quality Assurance
+
+### Code Review Process
+- Review all code changes before merging
+- Check for security vulnerabilities
+- Verify proper error handling
+- Ensure proper test coverage
+- Check for performance issues
+- Verify proper documentation
+- Review for accessibility compliance
+- Check for proper logging
+- Verify proper configuration
+- Ensure proper backup procedures
+
+### Testing Requirements
+- Unit tests for all business logic
+- Integration tests for API endpoints
+- End-to-end tests for user workflows
+- Performance tests for critical paths
+- Security tests for vulnerabilities
+- Accessibility tests for compliance
+- Load tests for scalability
+- Stress tests for reliability
+- Compatibility tests for browsers
+- Mobile responsiveness tests
+
+## Security Considerations
+
+### Data Protection
+- Encrypt sensitive data at rest
+- Use proper encryption for data in transit
+- Implement proper access controls
+- Use proper authentication mechanisms
+- Implement proper audit logging
+- Use proper data backup encryption
+- Implement proper data retention policies
+- Use proper data anonymization
+- Implement proper data classification
+- Use proper data loss prevention
+
+### Network Security
+- Use proper firewall configurations
+- Implement proper intrusion detection
+- Use proper VPN access for remote work
+- Implement proper network segmentation
+- Use proper SSL/TLS configurations
+- Implement proper DDoS protection
+- Use proper load balancer security
+- Implement proper API gateway security
+- Use proper container security
+- Implement proper monitoring and alerting
+
+## Performance Optimization
+
+### Backend Optimization
+- Use proper database indexing
+- Implement proper caching strategies
+- Use proper connection pooling
+- Implement proper query optimization
+- Use proper memory management
+- Implement proper garbage collection
+- Use proper load balancing
+- Implement proper horizontal scaling
+- Use proper CDN for static assets
+- Implement proper compression
+
+### Frontend Optimization
+- Use proper code splitting
+- Implement proper lazy loading
+- Use proper image optimization
+- Implement proper caching strategies
+- Use proper bundle optimization
+- Implement proper tree shaking
+- Use proper minification
+- Implement proper compression
+- Use proper CDN delivery
+- Implement proper service workers
+
+## Compliance & Standards
+
+### Accessibility Compliance
+- Implement proper ARIA labels
+- Use proper semantic HTML
+- Implement proper keyboard navigation
+- Use proper color contrast ratios
+- Implement proper screen reader support
+- Use proper focus management
+- Implement proper error announcements
+- Use proper form validation
+- Implement proper alternative text
+- Use proper heading structure
+
+### Internationalization
+- Implement proper i18n support
+- Use proper locale management
+- Implement proper date/time formatting
+- Use proper number formatting
+- Implement proper currency formatting
+- Use proper text direction support
+- Implement proper pluralization
+- Use proper character encoding
+- Implement proper text truncation
+- Use proper cultural considerations
+
+## Emergency Procedures
+
+### Incident Response
+- Implement proper incident detection
+- Use proper escalation procedures
+- Implement proper communication protocols
+- Use proper backup and recovery procedures
+- Implement proper post-incident analysis
+- Use proper documentation procedures
+- Implement proper notification systems
+- Use proper monitoring and alerting
+- Implement proper testing procedures
+- Use proper security measures
+
+### Disaster Recovery
+- Implement proper backup strategies
+- Use proper recovery procedures
+- Implement proper data restoration
+- Use proper system recovery
+- Implement proper communication plans
+- Use proper testing procedures
+- Implement proper documentation
+- Use proper monitoring and alerting
+- Implement proper security measures
+- Use proper compliance procedures
+
+## Final Notes
+
+### Development Workflow
+- Use Git for version control with proper branching strategy
+- Implement proper code review processes
+- Use proper testing procedures
+- Implement proper deployment strategies
+- Use proper monitoring and alerting
+- Implement proper backup and recovery
+- Use proper security measures
+- Implement proper documentation
+- Use proper performance optimization
+- Implement proper quality assurance
+
+### Continuous Improvement
+- Regularly review and update security measures
+- Monitor and optimize performance metrics
+- Update dependencies and libraries regularly
+- Improve documentation and user guides
+- Enhance monitoring and alerting systems
+- Optimize backup and recovery procedures
+- Improve testing coverage and quality
+- Enhance user experience and accessibility
+- Update compliance and regulatory requirements
+- Implement new features and improvements
+
+Remember: This is a complex system that requires careful attention to security, performance, and reliability. Always prioritize user experience, system stability, and data protection in all development decisions.
